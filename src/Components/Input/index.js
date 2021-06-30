@@ -21,5 +21,5 @@ class InputCom extends Component{
         )
     }
 }
-console.log("hetvi")
+console.log("kanani")
 export default InputCom 
