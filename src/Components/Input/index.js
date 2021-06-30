@@ -21,5 +21,5 @@ class InputCom extends Component{
         )
     }
 }
-
+console.log("hiii")
 export default InputCom 
