@@ -1,6 +1,6 @@
-import Login from "./Components/login";
+
 import { BrowserRouter as Router } from "react-router-dom";
-import Deshboard from "./Components/Deshboard/Deshboard";
+
 import "./App.css";
 
 function App() {

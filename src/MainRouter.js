@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Login from "./page/Login";
-import Registration from "./page/Registration";
+import Login from "./page/Login/index";
+
 import RestrictedRoute from "./RestrictedRoute";
 import Routers from "./Router";
 

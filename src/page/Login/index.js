@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import {Input, Button, Checkbox,Divider, Form} from 'antd';
+import InputStyle from './style';
+import {Input,Divider } from 'antd';
 import logo from "../../images/Logo.png";
 import { withRouter } from 'react-router-dom';
-import {Formik} from "formik";
+import {Formik,Form} from "formik";
 import Label  from '../../Components/Label/index';
+import Button  from '../../Components/Button/index';
+import InputCom from '../../Components/Input';
 import * as Yup from "yup";
 
 const loginValidationSchema = Yup.object().shape({
@@ -28,16 +31,16 @@ class Login extends Component {
 
     };
   }
-  handleSubmit = async (values, { setSubmitting }) => {
+  handleSubmit =  (values) => {
     try {
-   
-     
+   debugger
+   console.log(values);  
       let data = {
       username: values.username.trim(),
         password: window.btoa(values.password.trim()),
       };
-      await this.props.login(data);
-      setSubmitting(false);
+      // await this.props.login(data);
+      // setSubmitting(false);
     } catch (error) {
       console.log(error, "handle error");
     }
@@ -45,11 +48,11 @@ class Login extends Component {
     render() {
        const {initial}=this.state;
         return (
-
+          <InputStyle>
 
             <div className="box-login" >
               <Formik
-                initialValues={initial}
+                initialValues={{username: "", password: ""}}
                 validationSchema={loginValidationSchema}
                 onSubmit={this.handleSubmit}
               >
@@ -80,26 +83,30 @@ class Login extends Component {
                     <h2>Login</h2>
                  
                   <Label Label ="Username"/>
-                 <Input onBlur={handleBlur}
-                        name="username"
-                        value={values.username.trim()}
-                        handleChange={handleChange}
-                 
-                 />
+                  <InputCom
+                  onBlur={handleBlur}
+                  name="username"
+                  // value={values.username.trim()}
+                  handleChange={handleChange}
+                  className = {
+                    errors.username&&touched.username?"error":""
+                  }
+                  />
+                
             <Label Label ="Password"/>
-                    <Input.Password 
+            <InputCom
                     //  password={true}
-                    //     max={25}
+                        max={25}
                         onBlur={handleBlur}
                         name="password"
-                        value={values.password.trim()}
                         handleChange={handleChange}
+                        className = {
+                          errors.username&&touched.username?"error":""
+                        }
+                        type="password"
                         />
-                  <label wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit" onClick={this.submit}>
-                      Submit
-                    </Button>
-                  </label>
+                 <Button type ="submit" Button="submit"/>
+                  
                 </Form>
                   
                 )}
@@ -107,7 +114,7 @@ class Login extends Component {
 
 </Formik>
                 
-            </div>
+            </div></InputStyle>
         );
     }
 }
