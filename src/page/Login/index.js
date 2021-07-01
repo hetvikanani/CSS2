@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import InputStyle from './style';
-import {Input,Divider } from 'antd';
+import {Divider } from 'antd';
 import logo from "../../images/Logo.png";
 import { withRouter } from 'react-router-dom';
 import {Formik,Form} from "formik";
 import Label  from '../../Components/Label/index';
 import Button  from '../../Components/Button/index';
-import InputCom from '../../Components/Input';
+import Input from '../../Components/Input/index';
 import * as Yup from "yup";
 
 const loginValidationSchema = Yup.object().shape({
   username: Yup.string().trim().required(" "),
   password: Yup.string()
     .trim()
-    .min(6, "password atleast 6 character")
-    .max(25, "maximum 25 character")
+    // .min(6, "password atleast 6 character")
+    // .max(25, "maximum 25 character")
     .required(" "),
 });
 
@@ -22,29 +22,43 @@ class Login extends Component {
    constructor(props) {
     super(props);
     this.state = { 
-
       initial:{
         username: "", 
-        password: ""
-
+        password: "",
       }
-
     };
   }
-  handleSubmit =  (values) => {
-    try {
-   debugger
-   console.log(values);  
+  handleSubmit = async (values, { setSubmitting }) => {
+    try {debugger
+      // this.setState({ btnDisable: true });
+      // setTimeout(() => {
+      //   this.setState({ btnDisable: false });
+      // }, 4500);
       let data = {
-      username: values.username.trim(),
+        username: values.username.trim(),
         password: window.btoa(values.password.trim()),
       };
       // await this.props.login(data);
-      // setSubmitting(false);
-    } catch (error) {
+      setSubmitting(false);
+    } catch (error) { 
       console.log(error, "handle error");
     }
   };
+  // handleSubmit =  (values, { setSubmitting }) => {
+  //   try {
+  //     debugger
+  //  console.log(values);  
+  //     let data = {
+  //     username: values.username.trim(),
+  //       password: window.btoa(values.password.trim()),
+  //     };
+  //     // this.props.history.push("/css/dashboard")
+  //     // await this.props.login(data);
+  //     setSubmitting(false);
+  //   } catch (error) {
+  //     console.log(error, "handle error");
+  //   }
+  // };
     render() {
        const {initial}=this.state;
         return (
@@ -52,7 +66,7 @@ class Login extends Component {
 
             <div className="box-login" >
               <Formik
-                initialValues={{username: "", password: ""}}
+                initialValues={initial}
                 validationSchema={loginValidationSchema}
                 onSubmit={this.handleSubmit}
               >
@@ -83,10 +97,10 @@ class Login extends Component {
                     <h2>Login</h2>
                  
                   <Label Label ="Username"/>
-                  <InputCom
+                  <Input
                   onBlur={handleBlur}
                   name="username"
-                  // value={values.username.trim()}
+                  value={values.username.trim()}
                   handleChange={handleChange}
                   className = {
                     errors.username&&touched.username?"error":""
@@ -94,18 +108,19 @@ class Login extends Component {
                   />
                 
             <Label Label ="Password"/>
-            <InputCom
+            <Input
                     //  password={true}
                         max={25}
                         onBlur={handleBlur}
                         name="password"
+                        value={values.password.trim()}
                         handleChange={handleChange}
                         className = {
                           errors.username&&touched.username?"error":""
                         }
                         type="password"
                         />
-                 <Button type ="submit" Button="submit"/>
+                 <Button type = "submit" text="submit"/>
                   
                 </Form>
                   

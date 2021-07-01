@@ -13,7 +13,7 @@ class index extends Component {
           <Breadcrumb>
             <Breadcrumb.Item>Application</Breadcrumb.Item>
             <Breadcrumb.Item>
-              <a href="">dashBoard</a>
+              <a href="">DashBoard</a>
             </Breadcrumb.Item>
           </Breadcrumb>
         </Header>
@@ -24,4 +24,4 @@ class index extends Component {
 }
 
 export default index;
-// aam j kes ne tu ha
+

@@ -4,8 +4,8 @@ class Button extends Component{
     render(){
         return(
             <div>
-                <button>
-                    {this.props.Button}
+                <button type = {this.props.type}>
+                    {this.props.text}
                 </button>
             </div>
         )

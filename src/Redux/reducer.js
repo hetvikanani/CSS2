@@ -13,7 +13,7 @@ const Machine = (state = initialState, action) => {
     let newData = state.machineData.filter(
       (data) => data.id !== action.payload.id
     );
-
+ 
     return { ...state, machineData: newData };
   } else if (action.type === "EDIT_MACHINE_DATA") {
     console.log("edit vadu redux", action);

@@ -3,16 +3,21 @@ import { Input } from 'antd';
 
 class InputCom extends Component{
     render(){
+        const{type,handleChange,className,value,...props}=this.props
         return(
             <div>
-                {this.props.type === "password"?<Input.Password 
-                onChange = {this.props.handleChange}
-                className = {this.props.className}
-                type={this.props.type}
+                {type === "password"?<Input.Password 
+                onChange = {handleChange}
+                className = {className}
+                type={type}
+                value = {value}
+                {...props}
                 />:<Input 
-                onChange = {this.props.handleChange}
-                className = {this.props.className}
-                type={this.props.type}
+                onChange = {handleChange}
+                className = {className}
+                type={type}
+                value = {value}
+                {...props}
                 />}
              
                
@@ -21,5 +26,5 @@ class InputCom extends Component{
         )
     }
 }
-console.log("kanani")
+
 export default InputCom 
