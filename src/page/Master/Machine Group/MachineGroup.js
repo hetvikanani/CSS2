@@ -9,7 +9,7 @@ import {
   Modal,
   Divider,
 } from "antd";
-
+import actions from "../../../Redux/MachineGroup/action";
 import { Link, withRouter } from "react-router-dom";
 import Header from "../../../Layout/Header";
 import { connect } from "react-redux";
@@ -103,10 +103,8 @@ class MachineGroup extends Component {
 
   deleteOriginal = () => {
     console.log("delete call", this.props);
-    let obj = {
-      type: "DELETE_MACHINEDATA",
-      payload: { id: this.state.deleteId },
-    };
+    let obj = actions.deleteData({ id: this.state.deleteId });
+
     this.props.dispatch(obj);
     this.setState({ deleteModal: false });
   };

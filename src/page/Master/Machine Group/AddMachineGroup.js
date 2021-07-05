@@ -20,6 +20,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import TextArea from "antd/lib/input/TextArea";
 import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import actions from "../../../Redux/MachineGroup/action";
 const { Option } = Select;
 
 class AddMachineGroup extends Component {
@@ -42,10 +43,9 @@ class AddMachineGroup extends Component {
 
   submitData = () => {
     console.log("add submit");
-    this.props.dispatch({
-      type: "ADD_MACHINE_DATA",
-      payload: { ...this.state.fields, id: Math.random() * 1000 },
-    });
+    this.props.dispatch(
+      actions.addData({ ...this.state.fields, id: Math.random() * 1000 })
+    );
     this.props.history.push("/css/machine-group");
   };
 
@@ -172,7 +172,7 @@ class AddMachineGroup extends Component {
                     label="Configuration value"
                     style={{ borderRadius: "5px 0px 0px 5px" }}
                   >
-                    <div style={{ display: "flex",padding:"3px" }}>
+                    <div style={{ display: "flex", padding: "3px" }}>
                       <div>
                         {" "}
                         No
@@ -268,7 +268,7 @@ class AddMachineGroup extends Component {
                       render: (data) => {
                         let newString = "";
                         data.map((newData, i) => {
-                          if (this.state.tags.length-1 === i)
+                          if (this.state.tags.length - 1 === i)
                             newString = newString + newData;
                           else newString += newData + ",";
                           return newData;

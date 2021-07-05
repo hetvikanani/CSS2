@@ -15,6 +15,7 @@ import {
 } from "antd";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import actions from "../../../Redux/MachineGroup/action";
 const { Option } = Select;
 
 class EditMachineGroup extends Component {
@@ -45,10 +46,9 @@ class EditMachineGroup extends Component {
 
   editData = () => {
     console.log("edit");
-    this.props.dispatch({
-      type: "EDIT_MACHINE_DATA",
-      payload: { ...this.state.fields, id: this.props.match.params.id },
-    });
+    this.props.dispatch(
+      actions.editData({ ...this.state.fields, id: this.props.match.params.id })
+    );
     this.props.history.push("/css/machine-group");
   };
 

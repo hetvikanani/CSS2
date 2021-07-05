@@ -1,10 +1,12 @@
 import { createStore } from "redux";
-import Machine from "./reducer";
+// import Machine from "./MachineGroup/reducer";
+import reducers from "./reducers"
+
 import { loadState, saveState } from "./localstorage";
 const persistedState = loadState();
 
 const store = createStore(
-  Machine,
+  reducers,
   persistedState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
@@ -14,4 +16,3 @@ store.subscribe(() => {
 });
 
 export { store };
-
