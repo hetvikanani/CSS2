@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import InputStyle from './style';
 import {Divider } from 'antd';
 import logo from "../../images/Logo.png";
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import {Formik,Form} from "formik";
 import Label  from '../../Components/Label/index';
 import Button  from '../../Components/Button/index';
 import Input from '../../Components/Input/index';
+import {login} from '../../Redux/Login/actions'
+import { connect } from "react-redux";
 import * as Yup from "yup";
 
 const loginValidationSchema = Yup.object().shape({
@@ -38,7 +40,7 @@ class Login extends Component {
         username: values.username.trim(),
         password: window.btoa(values.password.trim()),
       };
-      // await this.props.login(data);
+      await this.props.login(data);
       setSubmitting(false);
     } catch (error) { 
       console.log(error, "handle error");
@@ -64,7 +66,7 @@ class Login extends Component {
         return (
           <InputStyle>
 
-            <div className="box-login" >
+            <div className="box-login"  >
               <Formik
                 initialValues={initial}
                 validationSchema={loginValidationSchema}
@@ -94,7 +96,7 @@ class Login extends Component {
                          
                         </div>
             <Divider />
-                    <h2>Login</h2>
+                    <h2 className="heading">Login</h2>
                  
                   <Label Label ="Username"/>
                   <Input
@@ -134,4 +136,18 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login);
+const mapStateToProps = (state) => ({
+  // loading: state.login.loading,
+  error: state.login.error,
+  message: state.login.message,
+});
+const mapDispatchToProps = (dispatch) => ({
+  login: (payload) => dispatch(login(payload)),
+});
+
+// export default connect(mapStateToProps,mapDispatchToProps) (LoginPage);
+
+// export default  withRouter(Login);
+
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Login));

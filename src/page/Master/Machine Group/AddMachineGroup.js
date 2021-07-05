@@ -149,7 +149,7 @@ class AddMachineGroup extends Component {
                   {/* <Input
                     value={fields.configuration}
                     onChange={(e) =>
-                      this.changeFiled("configuration", e.target.value)
+                          this.changeFiled("configuration", e.target.value)
                     }
                   /> */}
                   <Select

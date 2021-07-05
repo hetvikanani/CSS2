@@ -1,14 +1,15 @@
-import { createStore } from "redux";
+import { createStore,applyMiddleware } from "redux";
 // import Machine from "./MachineGroup/reducer";
 import reducers from "./reducers"
+import thunk  from 'redux-thunk'
+
 
 import { loadState, saveState } from "./localstorage";
 const persistedState = loadState();
 
 const store = createStore(
   reducers,
-  persistedState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(thunk )
 );
 
 store.subscribe(() => {
@@ -16,3 +17,9 @@ store.subscribe(() => {
 });
 
 export { store };
+
+// import { createStore,applyMiddleware } from "redux";
+// import rootReducer from "../rootreducer/index";
+// import thunk  from 'redux-thunk'
+// const store = createStore(rootReducer,applyMiddleware(thunk ));
+// export default store;

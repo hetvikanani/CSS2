@@ -1,4 +1,8 @@
+import { combineReducers } from "redux";
+
 import Machine from "./MachineGroup/reducer";
 import login from "./Login/reducers"
-
-export default {Machine,login}
+const rootReducer = combineReducers({
+Machine, login
+});
+export default rootReducer;
