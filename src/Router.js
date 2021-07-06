@@ -6,6 +6,7 @@ import Machine from "./page/Master/Machine/Machine";
 import MachineGroup from "./page/Master/Machine Group/MachineGroup";
 import AddMachineGroup from "./page/Master/Machine Group/AddMachineGroup";
 import EditMachineGroup from "./page/Master/Machine Group/EditMachineGroup";
+import AddMachine from "./page/Master/Machine/AddMachine";
 
 import Layout from "./Layout/Layout";
 
@@ -20,9 +21,7 @@ class Routers extends Component {
           <Route path="/css/dashboard" exact={true}>
             <Dashboard />
           </Route>
-          <Route path="/css/machine" exact={true}>
-            <Machine />
-          </Route>
+        
           <Route path="/css/machine-group" exact={true}>
             <MachineGroup />
           </Route>
@@ -31,6 +30,12 @@ class Routers extends Component {
           </Route>
           <Route path="/css/machine-group/edit/:id" exact={true}>
             <EditMachineGroup />
+          </Route>
+          <Route path="/css/machine" exact={true}>
+            <Machine />
+          </Route>
+          <Route path="/css/machine/add" exact={true}>
+            <AddMachine />
           </Route>
         </Switch>
       </Layout>

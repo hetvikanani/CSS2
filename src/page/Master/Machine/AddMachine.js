@@ -1,22 +1,23 @@
-import React, { Component } from "react";
-import Header from "../../../Layout/Header";
+import React, { Component } from 'react';
 import {
-  Breadcrumb,
-  Form,
-  Input,
-  Button,
-  Radio,
-  Divider,
-  Row,
-  Col,
-  Menu,
-  Dropdown,
-  Select,
-  Switch,
-  Tag,
-  
-  Table,
-} from "antd";
+    Breadcrumb,
+    Form,
+    Input,
+    Button,
+    Radio,
+    Divider,
+    Row,
+    Col,
+    Menu,
+    Dropdown,
+    Select,
+    Switch,
+    Tag,
+    
+    Table,
+  } from "antd";
+  import Header from '../../../Layout/Header';
+ 
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import TextArea from "antd/lib/input/TextArea";
@@ -24,52 +25,53 @@ import { PlusOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import actions from "../../../Redux/MachineGroup/action";
 const { Option } = Select;
 
-class AddMachineGroup extends Component {
-  constructor() {
-    super();
-    this.state = {
-      fields: {},
-      configurationValue: false,
-      tags: [],
-      tagValue: "",
-      tableData: [],
-    };
-  }
+class AddMachine extends Component{
+    constructor(){
+        super(
+            this.state={
+                 fields:{},
+                configurationValue: false,
+                tags: [],
+                tagValue: "",
+                tableData: [],
+            }
+        )
+    }
+    changeFiled = (name, value) => {
+        let newField = this.state. fields;
+        newField[name] = value;
+        this.setState({  fields: newField });
+      };
+    
+      submitData = () => {
+        console.log("add submit");
+        this.props.dispatch(
+          actions.addData({ ...this.state. fields, id: Math.random() * 1000 })
+        );
+        this.props.history.push("/css/machine-group");
+      };
+    
+    render(){ 
+        const { fields } = this.state;
+        return(
+        <div>
+         <Header>
+      <Breadcrumb>
+     
+    <Breadcrumb.Item>
+      <a href="">Master</a>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+      <a href="">Machine</a>
+    </Breadcrumb.Item> 
+ </Breadcrumb>
+    </Header>
 
-  changeFiled = (name, value) => {
-    let newField = this.state.fields;
-    newField[name] = value;
-    this.setState({ fields: newField });
-  };
-
-  submitData = () => {
-    console.log("add submit");
-    this.props.dispatch(
-      actions.addData({ ...this.state.fields, id: Math.random() * 1000 })
-    );
-    this.props.history.push("/css/machine-group");
-  };
-
-  render() {
-    const { fields } = this.state;
-    return (
-      <div>
-        <Header>
-          <Breadcrumb>
-            <Breadcrumb.Item>
-              <Link to="/css/dashboard">Application</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <Link to="/css/machine-group">Master</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>Machine Group</Breadcrumb.Item>
-          </Breadcrumb>
-        </Header>
-        <h1 style={{ fontWeight: "bold", fontSize: "21px" }}>
-          Add Machine Group
+    <h1 style={{ fontWeight: "bold", fontSize: "21px" }}>
+          Add Machine
         </h1>
 
-        <div className="box">
+        {/* <div className="box">
           <h1
             style={{
               fontSize: "17.5px",
@@ -93,7 +95,7 @@ class AddMachineGroup extends Component {
                   ]}
                 >
                   <Input
-                    value={fields.machineGroup}
+                    value={ fields.machineGroup}
                     style={{ borderRadius: "5px 0px 0px 5px" }}
                     onChange={(e) =>
                       this.changeFiled("machineGroup", e.target.value)
@@ -114,7 +116,7 @@ class AddMachineGroup extends Component {
                   ]}
                 >
                   <Input
-                    value={fields.name}
+                    value={ fields.name}
                     onChange={(e) => this.changeFiled("name", e.target.value)}
                   />
                 </Form.Item>
@@ -124,7 +126,7 @@ class AddMachineGroup extends Component {
               <Col span={12}>
                 <Form.Item label="Description">
                   <TextArea
-                    value={fields.description}
+                    value={ fields.description}
                     onChange={(e) =>
                       this.changeFiled("description", e.target.value)
                     }
@@ -135,7 +137,7 @@ class AddMachineGroup extends Component {
                 <Form.Item label="LPH">
                   <Input
                     type="number"
-                    value={fields.lph}
+                    value={ fields.lph}
                     onChange={(e) => this.changeFiled("lph", e.target.value)}
                   />
                 </Form.Item>
@@ -148,17 +150,17 @@ class AddMachineGroup extends Component {
                   style={{ borderRadius: "5px 0px 0px 5px" }}
                 >
                   {/* <Input
-                    value={fields.configuration}
+                    value={ fields.configuration}
                     onChange={(e) =>
                           this.changeFiled("configuration", e.target.value)
                     }
                   /> */}
-                  <Select
-                    value={fields.configuration}
+                  {/* <Select
+                    value={ fields.configuration}
                     onChange={(e) => {
-                      let newField = this.state.fields;
+                      let newField = this.state. fields;
                       newField.configuration = e;
-                      this.setState({ fields: newField });
+                      this.setState({  fields: newField });
                     }}
                   >
                     <Option value="asda">ASDA</Option>
@@ -167,7 +169,7 @@ class AddMachineGroup extends Component {
                   </Select>
                 </Form.Item>
               </Col>
-              {fields.configuration && (
+              { fields.configuration && (
                 <Col span={12}>
                   <Form.Item
                     label="Configuration value"
@@ -233,7 +235,7 @@ class AddMachineGroup extends Component {
                             id: this.state.tableData.length,
                             configurationValue: this.state.tags,
                             configurationAttribute:
-                              this.state.fields.configuration.toUpperCase(),
+                              this.state. fields.configuration.toUpperCase(),
                           };
                           this.setState(
                             {
@@ -319,9 +321,12 @@ class AddMachineGroup extends Component {
             </button>
           </div>
         </div>
-      </div>
-    );
-  }
+      </div> */} */}
+        
+    )
+}
+       
+    
 }
 
-export default withRouter(connect()(AddMachineGroup));
+export default withRouter(AddMachine);

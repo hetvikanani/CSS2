@@ -5,7 +5,7 @@ const initialState = {
   machineData: [],
   name: "dsfds",
 };
-const Machine = (state = initialState, action) => {
+const MachineGroup = (state = initialState, action) => {
   switch (action.type) {
     case actions.ADD_MACHINE_DATA: {
       let newData = { ...action.payload, sr: state.machineData.length + 1 };
@@ -35,4 +35,4 @@ const Machine = (state = initialState, action) => {
   }
 };
 
-export default Machine;
+export default MachineGroup;

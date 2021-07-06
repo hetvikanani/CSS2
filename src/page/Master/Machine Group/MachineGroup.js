@@ -111,9 +111,8 @@ class MachineGroup extends Component {
 
   render() {
     console.log("xxxxxx", this.props.machineData);
-    const viewDataOnly = this.props.machineData.filter(
-      (data) => data.id === this.state.viewId
-    )[0];
+    // const viewDataOnly = this.props.machineData.filter(
+    //   (data) => data.id === this.state.viewId)[0];
     const menu = (
       <Menu selectable={false} style={{ color: "rgba(0,0,0,.85)" }}>
         <Menu.Item>
@@ -214,9 +213,9 @@ class MachineGroup extends Component {
               style={{
                 color: "rgba(211,41,41)",
                 fontSize: "50px",
-                alignItems: "center",
+                alignItems: "center", 
               }}
-            />
+            />  
           </div>
 
           <div
@@ -255,7 +254,7 @@ class MachineGroup extends Component {
             );
           }}
         >
-          {viewDataOnly ? (
+          {/* {viewDataOnly ? (
             <>
               <div style={{ fontWeight: "600" }}>
                 <h4 style={{ fontWeight: "765", marginBottom: "1rem" }}>
@@ -268,9 +267,9 @@ class MachineGroup extends Component {
 
                 <p>LPH : {viewDataOnly.lph}</p>
                 {/* <p>No. of Machinery : 0</p> */}
-              </div>
+              {/* </div>
             </>
-          ) : null}
+          ) : null} */} */}
         </Modal>
       </div>
     );
