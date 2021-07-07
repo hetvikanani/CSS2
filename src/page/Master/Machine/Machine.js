@@ -5,7 +5,7 @@ import {
   Button,
   Table,
   Dropdown,
-  Menu,
+  Menu, 
   Modal,
   Divider,
 } from "antd";
@@ -33,39 +33,44 @@ class Machine extends Component {
       sorter: (a, b) => a.sr - b.sr,
     },
     {
-      title: "Machinery Group",
-      dataIndex: "machineGroup",
-      key: "group",
-    },
-    {
-      title: "Short Name",
+      title: "Name",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "LPH",
-      dataIndex: "lph",
-      key: "lph",
+      title: "Machine Group",
+      dataIndex: "group",
+      key: "group",
     },
     {
-      title: "No. of machinery",
-      dataIndex: "lph",
-      key: "description",
+      title: "Manufacturing Date",
+      dataIndex: "date",
+      key: "date",
     },
     {
-      title: "",
-      dataIndex: "id",
-      key: "action",
-      render: (data, b) => {
-        console.log(data, b, "render table");
-        return (
-          <Dropdown.Button overlay={() => this.menu(data)}></Dropdown.Button>
-        );
-      },
+      title: "Rental Price",
+      dataIndex: "price",
+      key: "price",
     },
+    {
+      title: "Allotted",
+      dataIndex: "allotted",
+      key: "allotted",
+    },
+    // {
+    //   title: "",
+    //   dataIndex: "id",
+    //   key: "action",
+    //   render: (data, b) => {
+    //     console.log(data, b, "render table");
+    //     return (
+    //       <Dropdown.Button overlay={() => this.menu(data)}></Dropdown.Button>
+    //     );
+    //   },
+    // },
   ];
   render() {
-    console.log("machine",this.props)
+    console.log("machine",this.props.Machine)
     const menu = (
       <Menu selectable={false} style={{ color: "rgba(0,0,0,.85)" }}>
         <Menu.Item>
@@ -104,9 +109,10 @@ class Machine extends Component {
                 fontWeight: "600", 
                 borderRadius: "7px",
               }}
-              // onClick={() => {
-              //   this.props.history.push("/css/machineup/add");
-              // }}
+              onClick={() => {
+                
+                this.props.history.push("/css/machineup/add");
+              }}
             >
               Add Machine
             </Button>
@@ -118,8 +124,17 @@ class Machine extends Component {
             </span>
           </Dropdown>
     </div>
+    <Table
+          bordered={true}
+          pagination={false}
+          columns={this.columns}
+          dataSource={this.props.machineData}
+        />
     </>;
   }
 }
 
-export default connect((state) => ({}))(Machine);
+// export default connect((state) => ({}))(Machine);
+export default withRouter(
+  connect((state) => ({  machine: state.machine}))(Machine)
+);

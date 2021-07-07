@@ -3,7 +3,7 @@ import actions from "./action";
 
 const initialState = {
   machineData: [],
-  name: "dsfds",
+  // name: "dsfds",
 };
 const MachineGroup = (state = initialState, action) => {
   switch (action.type) {

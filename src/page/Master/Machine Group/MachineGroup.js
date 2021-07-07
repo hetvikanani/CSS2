@@ -8,7 +8,7 @@ import {
   Menu,
   Modal,
   Divider,
-} from "antd";
+} from "antd"; 
 import actions from "../../../Redux/MachineGroup/action";
 import { Link, withRouter } from "react-router-dom";
 import Header from "../../../Layout/Header";
@@ -171,7 +171,7 @@ class MachineGroup extends Component {
         </div>
         <Table
           bordered={true}
-          pagination={false}
+          pagination={true}
           columns={this.columns}
           dataSource={this.props.machineData}
         />
