@@ -14,3 +14,15 @@ export const axiosPost = async (url, data) => {
     console.log(error);
   }
 };
+export const axiosGet = async (url, data) => {
+  try {
+    // url = url.replace(/[^\x00-\x7F]/g, "");
+    let { data: response } = await axios.get("http://35.154.248.138/"+ url);
+    if(response.ResponseCode !== "200"){
+    }
+    return response;
+
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -14,10 +14,11 @@ import {
   Select,
   Switch,
   Tag,
-  
+  DatePicker,
   Table,
 } from "antd";
 import { Link, withRouter } from "react-router-dom";
+import actions from '../../../Redux/Machine/action';
 
 
 class AddMachine extends Component{
@@ -31,23 +32,30 @@ class AddMachine extends Component{
           tableData: [],
         };
       }
+
+      changeFiled = (name, value) => {
+        let newField = this.state.fields;
+        newField[name] = value;
+        this.setState({ fields: newField });
+      };
+    
+      submitData = () => {
+        // console.log("add submit");
+        // this.props.dispatch(
+        //   actions.addData({ ...this.state.fields, id: Math.random() * 1000 })
+        // );
+        // this.props.history.push("/css/machine");
+      };
+     
 render(){
     const { fields } = this.state;
 
     return(
         <div>
-             <Header>
-          <Breadcrumb>
-           
-            <Breadcrumb.Item>
-              <Link to="/css/machine-group">Master</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>Machine</Breadcrumb.Item>
-          </Breadcrumb>
-        </Header>
-        <h1 style={{ fontWeight: "bold", fontSize: "21px" }}>
-          Add Machine 
-        </h1>
+        
+         <h1 style={{ fontWeight: "bold", fontSize: "21px" }}>
+           Add Machine 
+         </h1>
         <div className="box">
         <h1
             style={{
@@ -67,7 +75,7 @@ render(){
                   rules={[
                     {
                       required: true,
-                      message: "Please input machinary group!",
+                      message: "",
                     },
                   ]}
                 >
@@ -80,7 +88,84 @@ render(){
                   />
                 </Form.Item>
               </Col>
+              <Col span={12}>
+                {" "}
+                <Form.Item
+                  label="Machine Name"
+                  name="name"
+                  // rules={[
+                  //   {
+                  //     required: true,
+                  //     message: "Please input name!",
+                  //   },
+                  // ]}
+                >
+                  <Input
+                    value={fields.name}
+                    onChange={(e) => this.changeFiled("name", e.target.value)}
+                  />
+                </Form.Item>
+              </Col>
               </Row>
+              <Row gutter={24}>
+              <col span={24}>
+
+              </col>
+              </Row>
+              <Row gutter={24}>
+              <Col span={12}>
+                <Form.Item
+                  label="Manufacturing date"
+                  name="date"
+                  // rules={[
+                  //   {
+                  //     required: true,
+                  //     message: "Please input machinary group!",
+                  //   },
+                  // ]}
+                >
+
+<DatePicker   />
+                  {/* <Input
+                    value={fields.machineGroup}
+                    style={{ borderRadius: "5px 0px 0px 5px" }}
+                    onChange={(e) =>
+                      this.changeFiled("machineGroup", e.target.value)
+                    }
+                  /> */}
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label="Rental price">
+                  <Input
+                    type="number"
+                    value={fields.lph}
+                    onChange={(e) => this.changeFiled("lph", e.target.value)}
+                  />
+                </Form.Item>
+              </Col>
+              </Row>
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <button
+              type="primary"
+              className="generalButton"
+              shape="round"
+              style={{ marginRight: "1rem" }}
+              onClick={() => {
+                this.props.history.push("/css/machine");
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              shape="round"
+              type="primary"
+              className="generalButton"
+              onClick={this.submitData}
+            >
+              Submit
+            </button>
+          </div>
           </Form>
         </div>
         </div>
@@ -89,4 +174,4 @@ render(){
 }
 
 
-export default AddMachine;
+export default withRouter(AddMachine);
