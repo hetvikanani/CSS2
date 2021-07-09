@@ -24,11 +24,6 @@ class Login extends Component {
    constructor(props) {
     super(props); 
 
-
-
-
-
-    
     this.state = { 
       initial:{
         username: "", 
@@ -37,7 +32,7 @@ class Login extends Component {
     };
   }
   handleSubmit = async (values, { setSubmitting }) => {
-    try {debugger
+    try {
       // this.setState({ btnDisable: true });
       // setTimeout(() => {
       //   this.setState({ btnDisable: false });

@@ -40,7 +40,7 @@ class Machine extends Component {
 
   async componentDidMount(){
     try {
-      // debugger
+      
       await this.props.getMachine();
       console.log(this.props.machines)
     } catch (error) {
@@ -176,9 +176,7 @@ class Machine extends Component {
         />
         
         </>
-      
-          
-        }
+             }
         {path=== "/css/machine/add"&&
         <div> 
           <AddMachine/>

@@ -3,7 +3,7 @@ import Header from "../../../Layout/Header";
 import {
   Breadcrumb,
   Form,
-  Input,
+  
   Button,
   Radio,
   Divider,
@@ -11,7 +11,7 @@ import {
   Col,
   Menu,
   Dropdown,
-  Select,
+
   Switch,
   Tag,
   DatePicker,
@@ -19,17 +19,31 @@ import {
 } from "antd";
 import { Link, withRouter } from "react-router-dom";
 import actions from '../../../Redux/Machine/action';
-
+import {getMachine} from '../../../Redux/Machine/action'
+import { connect } from "react-redux";
+// import InputCom from '../../../Components/Input';
+import Select from '../../../Components/Select';
+import Input from '../../../Components/Input';
+import { Formik } from 'formik';
+import Label from '../../../Components/Label';
 
 class AddMachine extends Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-          fields: {},
-          configurationValue: false,
-          tags: [],
-          tagValue: "",
-          tableData: [],
+          // fields: {},
+          // configurationValue: false,
+          // tags: [],
+          // tagValue: "",
+          // tableData: [],
+
+          initial:{
+            machineName:'',
+            machineGroup:'',
+            date:"",
+            price:'',
+          }
+          
         };
       }
 
@@ -39,16 +53,35 @@ class AddMachine extends Component{
         this.setState({ fields: newField });
       };
     
-      submitData = () => {
+      
+       submitData = async (values, { setSubmitting }) => {
+          try {
+           
+            let data = {
+              // username: values.username.trim(),
+              // password: window.btoa(values.password.trim()),
+              // machineName:this.state.machineName;
+              // machineGroup:this.state.machineGroup;
+              // date:this.state.date;
+              // price:this.state.price;  
+            };
+            await this.props.login(data);
+            setSubmitting(false);
+          } catch (error) { 
+            console.log(error, "handle error");
+          }
+        };
         // console.log("add submit");
         // this.props.dispatch(
         //   actions.addData({ ...this.state.fields, id: Math.random() * 1000 })
         // );
         // this.props.history.push("/css/machine");
-      };
+     
      
 render(){
-    const { fields } = this.state;
+    // const { fields } = this.state;
+    const {initial}=this.state;
+
 
     return(
         <div>
@@ -66,7 +99,100 @@ render(){
             Basic Machine  Details
           </h1>
           <Divider />   
-          <Form layout="vertical">
+          <Formik
+                initialValues={initial}
+                // validationSchema={loginValidationSchema}
+                onSubmit={this.handleSubmit}
+              >
+                
+                {({
+                  values,
+                  errors,
+                  touched,
+                  onBlur,
+                  handleChange,
+                  handleBlur,
+                  handleSubmit,
+                }) => (
+                  <Form onSubmit={handleSubmit}
+                  noValidate
+              
+                >
+                   {/* <div style={{ display:"flex",alignItems:"center",justifyContent:"center"}}>
+                        
+                            <img
+                              // className="ant-image-img w-16"
+                              // src={logo}
+                              style={{ width: "56px", height: "56px" }}
+                            ></img>
+                         
+                        </div> */}
+            {/* <Divider />
+                    <h2 className="heading">Login</h2>
+                 
+                  <Label Label ="Username"/> */}
+                  {/* <row>
+                    <col> */}
+                    <Label Label="Machine group*"></Label>
+                  <Input
+                  onBlur={handleBlur}
+                  name="username"
+                  // value={values.username.trim()}
+                  handleChange={handleChange}
+                  // className = {
+                  //   errors.username&&touched.username?"error":""
+                  // }
+                  />
+                   <Label Label="Machine Name"></Label>
+                  <Input
+                  onBlur={handleBlur}
+                  // name="username"
+                  // value={values.username.trim()}
+                  handleChange={handleChange}
+                  // className = {
+                  //   errors.username&&touched.username?"error":""
+                  // }
+                  />
+                   <Label Label="Manufacturing date"></Label>
+                   <DatePicker   />
+                   <Label Label="Rental Price"></Label>
+                   <Input
+                  onBlur={handleBlur}
+                  // name="username"
+                  // value={values.username.trim()}
+                  handleChange={handleChange}
+                  // className = {
+                  //   errors.username&&touched.username?"error":""
+                  // }
+                  />
+
+                    {/* </col> */}
+                  {/* </row> */}
+                 
+                
+            {/* <Label Label ="Password"/>
+            {/* <Input 
+                    //  password={true}
+                        max={25}
+                        onBlur={handleBlur}
+                        name="password"
+                        value={values.password.trim()}
+                        handleChange={handleChange}
+                        className = {
+                          errors.username&&touched.username?"error":""
+                        }
+                        type="password"
+                        /> */}
+                 <Button type = "submit" text="submit"/>
+                  
+                </Form>
+                  
+                )}
+              
+
+</Formik>
+          
+          {/* <Form layout="vertical">
               <Row gutter={24}>
               <Col span={12}>
                 <Form.Item
@@ -80,7 +206,7 @@ render(){
                   ]}
                 >
                   <Input
-                    value={fields.machineGroup}
+                    value={this.state.machineGroup}
                     style={{ borderRadius: "5px 0px 0px 5px" }}
                     onChange={(e) =>
                       this.changeFiled("machineGroup", e.target.value)
@@ -126,13 +252,13 @@ render(){
                 >
 
 <DatePicker   />
-                  {/* <Input
+                  <Input
                     value={fields.machineGroup}
                     style={{ borderRadius: "5px 0px 0px 5px" }}
                     onChange={(e) =>
                       this.changeFiled("machineGroup", e.target.value)
                     }
-                  /> */}
+                  />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -166,12 +292,28 @@ render(){
               Submit
             </button>
           </div>
-          </Form>
+          </Form> */}
         </div>
         </div>
     )
-}
-}
+  }
+
+};
 
 
-export default withRouter(AddMachine);
+const mapStateToProps = (state) => ({
+  // loading: state.login.loading,
+  // error: state.login.error,
+  // message: state.login.message,
+  machines:state.machine.machines,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+ getMachine: (payload) => dispatch(getMachine(payload)),
+});
+
+// export default connect((state) => ({}))(Machine);
+export default withRouter(connect( mapStateToProps, mapDispatchToProps)(AddMachine));
+
+
+// export default withRouter(AddMachine);

@@ -33,6 +33,31 @@ export default (state = initialState, action)=>{
                       // error: false,
                       // loading: true,
                     };
+                    case actions.POST_MACHINE_INITIATED:
+              return {
+                ...state,
+                // isAuthenticated: false,
+                // message: false,
+                // error: false,
+                // loading: true,
+              };
+              case actions.POST_MACHINE_SUCCESS:
+                return {
+                  ...state,
+                  // isAuthenticated: false,
+                  // message: false,
+                  // error: false,
+                  // loadnig: true,
+                  machines:action.payload.data
+                };
+                case actions.POST_MACHINE_ERROR:
+                    return {
+                      ...state,
+                      // isAuthenticated: false,
+                      // message: false,
+                      // error: false,
+                      // loading: true,
+                    };
           
             default:
                 return state;
