@@ -4,7 +4,7 @@ import {
   Breadcrumb,
   Form,
   
-  Button,
+
   Radio,
   Divider,
   Row,
@@ -17,7 +17,7 @@ import {
   DatePicker,
   Table,
 } from "antd";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter,NavLink } from "react-router-dom";
 import actions from '../../../Redux/Machine/action';
 import {getMachine} from '../../../Redux/Machine/action'
 import { connect } from "react-redux";
@@ -26,6 +26,7 @@ import Select from '../../../Components/Select';
 import Input from '../../../Components/Input';
 import { Formik } from 'formik';
 import Label from '../../../Components/Label';
+import Button from '../../../Components/Button/index'
 
 class AddMachine extends Component{
     constructor(props) {
@@ -54,29 +55,52 @@ class AddMachine extends Component{
       };
     
       
-       submitData = async (values, { setSubmitting }) => {
-          try {
+      // handleSubmit = async (values, { setSubmitting }) => {
+      //   try {
+          
+      //       console.log("add click",this.props)
            
-            let data = {
-              // username: values.username.trim(),
-              // password: window.btoa(values.password.trim()),
-              // machineName:this.state.machineName;
-              // machineGroup:this.state.machineGroup;
-              // date:this.state.date;
-              // price:this.state.price;  
-            };
-            await this.props.login(data);
-            setSubmitting(false);
-          } catch (error) { 
-            console.log(error, "handle error");
+      //       let data = {
+      //         // username: values.username.trim(),
+      //         // password: window.btoa(values.password.trim()),
+      //         machineName:values.machineName.trim(),
+      //         // machineGroup:this.state.machineGroup;
+              
+      //         price:values.price.trim(),
+      //       };
+      //       await this.props.machine(data);
+      //       setSubmitting(false);
+      //     } catch (error) { 
+      //       console.log(error, "handle error");
+      //     }
+      //   };
+
+      handleSubmit =async (values ,{setSubmitting}) => {
+        try {
+          const { selected } = this.state;
+          let local = localStorage.auth ? JSON.parse(localStorage.auth) : [];
+          let userId= local.id;
+          // this.setState({ redirect: true });
+          if (selected && this.checkGST(values.gstin)) return;
+          let data = {
+            id: values.id,
+            machineName:values.machineName.trim(),
+             machineGroup:values.machineGroup.trim(),
+           
+            created_by: userId,
           }
-        };
-        // console.log("add submit");
-        // this.props.dispatch(
-        //   actions.addData({ ...this.state.fields, id: Math.random() * 1000 })
-        // );
-        // this.props.history.push("/css/machine");
-     
+          if(values.id === 0)
+          await this.props.postHeadquarter(data);
+          else{
+            await this.props.updateHeadquarter({id:values.id,body:data});
+          }
+          setSubmitting(false);
+          window.location.href = "/headquarter";
+        } catch (error) {
+          console.log(error);
+        }
+      };
+       
      
 render(){
     // const { fields } = this.state;
@@ -113,6 +137,7 @@ render(){
                   handleChange,
                   handleBlur,
                   handleSubmit,
+                  setFieldValue,
                 }) => (
                   <Form onSubmit={handleSubmit}
                   noValidate
@@ -127,62 +152,53 @@ render(){
                             ></img>
                          
                         </div> */}
-            {/* <Divider />
-                    <h2 className="heading">Login</h2>
+             <Divider />
+                    
                  
-                  <Label Label ="Username"/> */}
-                  {/* <row>
-                    <col> */}
-                    <Label Label="Machine group*"></Label>
-                  <Input
-                  onBlur={handleBlur}
-                  name="username"
-                  // value={values.username.trim()}
-                  handleChange={handleChange}
-                  // className = {
-                  //   errors.username&&touched.username?"error":""
-                  // }
-                  />
+                  
+                 {/* <Row gutter={24}>
+                   <col span={12}> */}
+                   <Label Label="Machine group*"></Label>
+                   <Select
+                              data={["Hetvi","sdgfjhndsb"]}
+                              // className={
+                              //   errors.country && touched.country
+                              //     ? "txtError"
+                              //     : "normal"
+                              // }
+                              value={values.machineGroup}
+                              onChange={(data) =>
+                                setFieldValue("machineGroup", data)
+                              }
+                            />
+                    
+                   {/* </col>
+                   <col span={12}> */}
                    <Label Label="Machine Name"></Label>
                   <Input
                   onBlur={handleBlur}
-                  // name="username"
-                  // value={values.username.trim()}
+                  name="machineName"
+                  value={values.machineName.trim()}
                   handleChange={handleChange}
-                  // className = {
-                  //   errors.username&&touched.username?"error":""
-                  // }
                   />
-                   <Label Label="Manufacturing date"></Label>
+                   {/* </col>
+                 </Row> */}
+                   
+                 <Label Label="Manufacturing date"></Label>
                    <DatePicker   />
                    <Label Label="Rental Price"></Label>
                    <Input
                   onBlur={handleBlur}
-                  // name="username"
-                  // value={values.username.trim()}
+                  name="price"
+                  value={values.price.trim()}
                   handleChange={handleChange}
-                  // className = {
-                  //   errors.username&&touched.username?"error":""
-                  // }
                   />
 
                     {/* </col> */}
                   {/* </row> */}
                  
-                
-            {/* <Label Label ="Password"/>
-            {/* <Input 
-                    //  password={true}
-                        max={25}
-                        onBlur={handleBlur}
-                        name="password"
-                        value={values.password.trim()}
-                        handleChange={handleChange}
-                        className = {
-                          errors.username&&touched.username?"error":""
-                        }
-                        type="password"
-                        /> */}
+                  <NavLink to = "/css/machine">
+                <Button  type="button" text="cancle" /></NavLink>
                  <Button type = "submit" text="submit"/>
                   
                 </Form>
