@@ -14,7 +14,6 @@ import {
   Select,
   Switch,
   Tag,
-  
   Table,
 } from "antd";
 import { Link, withRouter } from "react-router-dom";
@@ -111,7 +110,7 @@ class AddMachineGroup extends Component {
                       required: true,
                       message: "Please input short name!",
                     },
-                  ]}
+                  ]}  
                 >
                   <Input
                     value={fields.name}

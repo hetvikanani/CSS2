@@ -8,7 +8,7 @@ import {
   Menu,
   Modal,
   Divider,
-} from "antd"; 
+} from "antd";
 import actions from "../../../Redux/MachineGroup/action";
 import { Link, withRouter } from "react-router-dom";
 import Header from "../../../Layout/Header";
@@ -23,6 +23,7 @@ import {
 } from "@ant-design/icons";
 
 const { Search } = Input;
+const { Column } = Table;
 
 class MachineGroup extends Component {
   constructor() {
@@ -110,7 +111,11 @@ class MachineGroup extends Component {
   };
 
   render() {
-    console.log("xxxxxx", this.props.machineData);
+    let data = this.props.machineData.machineData;
+    data.forEach((a, i) => {
+      a.key = i + 1;
+    });
+    console.log("xxxxxx", this.props.machineData, data);
     // const viewDataOnly = this.props.machineData.filter(
     //   (data) => data.id === this.state.viewId)[0];
     const menu = (
@@ -154,7 +159,7 @@ class MachineGroup extends Component {
                 fontWeight: "600",
                 borderRadius: "7px",
               }}
-              onClick={() => {
+              on  Click={() => {
                 this.props.history.push("/css/machine-group/add");
               }}
             >
@@ -170,11 +175,37 @@ class MachineGroup extends Component {
           </Dropdown>
         </div>
         <Table
-          bordered={true}
-          pagination={true}
-          columns={this.columns}
-          dataSource={this.props.machineData}
-        />
+          // bordered={true}
+          // pagination={true}
+          // columns={this.columns}
+          dataSource={data}
+        >
+          <Column
+            title={"Sr. no"}
+            dataIndex="key"
+            // sorter={(a, b) => a.af.localeCompare(b.af)}
+          />
+          <Column
+            title={"Machine Group"}
+            dataIndex="machineGroup"
+            // sorter={(a, b) => a.af.localeCompare(b.af)}
+          />
+          <Column
+            title={"Short Name"}
+            dataIndex="name"
+            // sorter={(a, b) => a.af.localeCompare(b.af)}
+          />
+          <Column
+            title={"LPH"}
+            dataIndex="lph"
+            // sorter={(a, b) => a.af.localeCompare(b.af)}
+          />
+          <Column
+            title={"No. of machine"}
+            dataIndex="lph"
+            // sorter={(a, b) => a.af.localeCompare(b.af)}
+          />
+        </Table>
         <Modal
           onCancel={() => {
             this.setState({ deleteModal: false });
@@ -213,9 +244,9 @@ class MachineGroup extends Component {
               style={{
                 color: "rgba(211,41,41)",
                 fontSize: "50px",
-                alignItems: "center", 
+                alignItems: "center",
               }}
-            />  
+            />
           </div>
 
           <div
@@ -267,9 +298,9 @@ class MachineGroup extends Component {
 
                 <p>LPH : {viewDataOnly.lph}</p>
                 {/* <p>No. of Machinery : 0</p> */}
-              {/* </div>
+          {/* </div>
             </>
-          ) : null} */} */}
+          ) : null} */}
         </Modal>
       </div>
     );
@@ -277,5 +308,7 @@ class MachineGroup extends Component {
 }
 
 export default withRouter(
-  connect((state) => ({ machineData: state.machineData }))(MachineGroup)
+  connect((state) => ({ machineData: state.machineGroup.machineData }))(
+    MachineGroup
+  )
 );

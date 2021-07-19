@@ -1,8 +1,11 @@
 import { Switch } from "react-router-dom";
 import actions from "./action";
 
+var local = localStorage.state
+  ? JSON.parse(localStorage.state).MachineGroup
+  : [];
 const initialState = {
-  machineData: [],
+  machineData: local,
   // name: "dsfds",
 };
 const MachineGroup = (state = initialState, action) => {
