@@ -21,7 +21,7 @@ import { connect } from "react-redux";
 // import InputCom from '../../../Components/Input';
 import Select from "../../../Components/Select";
 import Input from "../../../Components/Input";
-import { Formik, Form } from "formik";
+ import { Formik, Form } from "formik";
 import Label from "../../../Components/Label";
 import Button from "../../../Components/Button/index";
 import AddMachineStyle from "./style";
@@ -50,6 +50,9 @@ class AddMachine extends Component {
     };
   }
 
+
+
+
   changeFiled = (name, value) => {
     let newField = this.state.fields;
     newField[name] = value;
@@ -76,7 +79,7 @@ class AddMachine extends Component {
         // machine_code: values.code,
 
         // created_by: userId,
-      };
+        };
       // if (values.id === 0)
       await this.props.postMachine(data);
       // else {
@@ -88,7 +91,7 @@ class AddMachine extends Component {
       console.log(error);
     }
   };
-
+  //
   render() {
     // const { fields } = this.state;
     const { initial } = this.state;
@@ -114,7 +117,7 @@ class AddMachine extends Component {
             >
               {({
                 values,
-                errors,
+                errors, 
                 touched,
                 onBlur,
                 handleChange,

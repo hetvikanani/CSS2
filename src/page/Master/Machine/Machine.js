@@ -82,7 +82,7 @@ class Machine extends Component {
       dataIndex: "rental_price",
       key: "rental_price",
     },
-    {
+    { 
       title: "Allotted",
       dataIndex: "allotted",
       key: "allotted",

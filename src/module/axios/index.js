@@ -20,6 +20,7 @@ import axios from "axios";
 export const axiosGet = async (url, data) => {
   try {
     // url = url.replace(/[^\x00-\x7F]/g, "");
+    // debugger
     let { data: response } = await axios.get("http://35.154.248.138/" + url);
     if (response.ResponseCode !== "200") {
     }

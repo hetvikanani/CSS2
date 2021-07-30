@@ -4,6 +4,7 @@ import Login from "./page/Login/index";
 
 import RestrictedRoute from "./RestrictedRoute";
 import Routers from "./Router";
+import Kd from "./login/index"
 
 class MainRouter extends Component {
   constructor(){
@@ -18,7 +19,9 @@ class MainRouter extends Component {
         <Router>
           <Switch>
             <Route path="/login" exact={this.state.isLoggedIn}>
-            <Login  />
+            {/* <Login  /> */}
+            <Kd/>
+{/* ahi login uncomment and kd commet */}
           </Route>
           {/* <Route path="/registration" exact={true}>
             <Registration />

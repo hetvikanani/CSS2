@@ -150,7 +150,7 @@ class MachineGroup extends Component {
         </Header>
         <h1>Machine Group</h1>
         <div style={{ padding: "10px" }}>
-          <span>
+          <span>.+
             {" "}
             <Button
               style={{

@@ -7,7 +7,7 @@ import MainRouter from "./MainRouter";
 import { Provider } from "react-redux";
 import { store } from "./Redux/Store";
 
-ReactDOM.render(
+  ReactDOM.render(
   <Provider store={store}>
     <MainRouter />
   </Provider>,
