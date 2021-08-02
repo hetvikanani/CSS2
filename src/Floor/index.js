@@ -1,19 +1,50 @@
 import React, { Component } from "react";
-import { Input } from "antd";
+import { Image} from "antd";
 import { FloorStyle } from "./style";
+import Input from ".././Components/Input/index"
 import CollapseRe from "../Components/Collapse/index";
+import Vector from "./Vector.svg";
+import Map from "./Group 33.svg";
+import Edit from "./Group.svg";
+import Close from "./close.svg"
 
 const header = ["Floor-1", "Floor-2", "Floor-3", "Floor-4"];
 
 class Floor extends Component {
+
+  constructor(){
+    super()
+    this.state={
+      activeKey:["1"],
+    };
+  }
+  collapseKey = (key) => this.setState({activeKey: key });
+
   collapse = () => {
-    return header.map((gme) => (
+    return header.map((gme,i) => (
       <FloorStyle>
         <CollapseRe
+        key={i}
           header={
             <div className="panelSet">
               <h3 className="header">{gme}</h3>
+              {this.state.activeKey === i.toString() && (
+              <>
+                  <div className="edite">
+                    <Image
+                      src={Edit}
+                      width={16}
+                    />
+                  </div>
+                  <div className="">
+                    <Image
+                      src={Close}
+                      width={16}
+                    />
+                  </div>
+                </>)}
             </div>
+            
           }
           body={
             <div className="panel">
@@ -22,6 +53,8 @@ class Floor extends Component {
               <p>Location : Lorem ipsum</p>
             </div>
           }
+          collapseKey={this.collapseKey}
+
         />
       </FloorStyle>
     ));
@@ -32,12 +65,34 @@ class Floor extends Component {
       <FloorStyle>
         <div className="mainDiv">
           <h3 className="heading">Floor / Location Master</h3>
-          <div className="inputDiv">
-            <Input />
-          </div>
+          <div className="headDiv">
+                  <div className="search">
+                    <Input />
+                  </div>
+                  <div className="icon_box">
+                    <div className="set_icon_box">
+                      <Image
+                        src={Vector}
+                     
+                        className="locImg"
+                       
+                      />
+                    </div>
+                    <div className="set_icon_box">
+                      <Image
+                        src={Map}
+
+                        
+                        className="boxImg"
+                        
+                      />
+                    </div>
+                  </div>
+</div>
 
           <div className="centerDiv">{this.collapse()}</div>
         </div>
+        
       </FloorStyle>
     );
   }
