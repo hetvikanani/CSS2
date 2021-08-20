@@ -1,31 +1,58 @@
 import React, { Component } from "react";
 import { Input } from "antd";
 
-class InputCom extends Component {
+import { InputStyle } from "./style";
+const { TextArea } = Input;
+class FormInput extends Component {
   render() {
-    const { type, handleChange, className, value, ...props } = this.props;
+    const {
+      handleChange,
+      className,
+      size,
+      formClass,
+      row,
+      password,
+      max,
+      ...props
+    } = this.props;
+    let length = max ? max : 45;
     return (
-      <div>
-        {type === "password" ? (
-          <Input.Password
+      <InputStyle className={formClass ? formClass : ""}>
+        {row ? (
+          <TextArea
+            rows={row}
             onChange={handleChange}
-            className={className}
-            type={type}
-            value={value}
+            className={`form-control ${className}`}
+            maxLength={length}
+            {...props}
+          />
+        ) : password ? (
+          <Input.Password
+            size={size}
+            onChange={handleChange}
+            className={`form-control ${className}`}
+            autoComplete="off"
+            maxLength={length}
             {...props}
           />
         ) : (
           <Input
+            size={size}
             onChange={handleChange}
-            className={className}
-            type={type}
-            value={value}
+            className={`form-control ${className}`}
+            maxLength={length}
             {...props}
           />
         )}
-      </div>
+      </InputStyle>
     );
   }
 }
-
-export default InputCom;
+FormInput.defaultProps = {
+  size: "middle",
+  placeholder: "",
+  tabIndex: "1",
+  className: "",
+  readOnly: false,
+};
+export default FormInput;

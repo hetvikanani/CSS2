@@ -1,14 +1,19 @@
 import React, { Component } from "react";
+import { LabelStyle } from "./style";
 
 class Label extends Component {
   render() {
-    const { className } = this.props;
+    const { title, className } = this.props;
     return (
-      <div>
-        <label className={className}>{this.props.Label}</label>
-      </div>
+      <LabelStyle>
+        <label className={className}>{title}</label>
+      </LabelStyle>
     );
   }
 }
 
+Label.defaultProps = {
+  title: "Label",
+  className: "",
+};
 export default Label;

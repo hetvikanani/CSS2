@@ -1,46 +1,89 @@
 import React, { Component } from "react";
-import SelectStyle from "./selectStyle";
 import { Select } from "antd";
+
+import { SelectStyle } from "./style";
+
 const { Option } = Select;
 
-class select extends Component {
-  optiomUI = () => {
-    if (this.props.data) {
-      return this.props.data.map((e, i) => (
-        <Option key={i + 1} value={e}>
-          {e}{" "}
-        </Option>
-      ));
+class FormSelect extends Component {
+  getOptions = () => {
+    try {
+      const { data, withID } = this.props;
+      if (data && data.length > 0) {
+        if (withID) {
+          let dArray = data.sort((a, b) => a.value.localeCompare(b.value));
+          return dArray.map((l, i) => {
+            return (
+              l.value &&
+              l.id && (
+                <Option value={l.value} key={i} id={l.id}>
+                  {l.value}
+                </Option>
+              )
+            );
+          });
+        } else {
+          let dArray2 = data.sort((a, b) => a.localeCompare(b));
+          return dArray2.map((a, i) => {
+            return (
+              <Option value={a} key={i}>
+                {a}
+              </Option>
+            );
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   render() {
-    const { item, id, value, className, onChange } = this.props;
+    const {
+      id,
+      onChange,
+      selectClass,
+      defaultValue,
+      className,
+      placeholder,
+      value,
+    } = this.props;
     return (
-      <SelectStyle
-      //  id={id ? "form-dropdown" + id : "form-dropdown"}
-      >
-        <div id="form-dropdown">
-          <Select
-            showSearch
-            value={value}
-            showArrow={false}
-            className={className}
-            onChange={onChange}
-            getPopupContainer={() =>
-              document.getElementById(
-                id ? "form-dropdown" + id : "form-dropdown"
-              )
-            }
-          >
-            {this.optiomUI()}
-          </Select>
-        </div>{" "}
+      <SelectStyle id={id ? id : "form-dropdown"} className={className}>
+        <Select
+          value={value}
+          showSearch
+          defaultActiveFirstOption
+          showArrow={true}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+          optionFilterProp="children"
+          onChange={onChange}
+          dropdownClassName="dropdown-custom"
+          className={`select-custom ${selectClass ? selectClass : ""}`}
+          filterSort={(a, b) => a.value.localeCompare(b.value)}
+          filterOption={(input, option) =>
+            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
+          getPopupContainer={() =>
+            document.getElementById(id ? id : "form-dropdown")
+          }
+          dropdownRender={(mountNode, prop) => {
+            return (
+              <div className="dropdown-section">
+                <div>{mountNode}</div>
+              </div>
+            );
+          }}
+        >
+          {this.getOptions()}
+        </Select>
       </SelectStyle>
     );
   }
 }
-export default select;
-
-// function handleChange(value) {
-//   console.log(`selected ${value}`);
-// }
+FormSelect.defaultProps = {
+  placeholder: null,
+  className: "",
+  disabled: false,
+};
+export default FormSelect;

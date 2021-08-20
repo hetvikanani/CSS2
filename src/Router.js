@@ -54,6 +54,9 @@ class Routers extends Component {
           <Route path="/css/branch" exact={true}>
             <Branch/>
           </Route>
+          <Route path="/css/branch/add" exact={true}>
+            <Branch/>
+          </Route>
           {/* <Route path="/css/porter">
             <Porter />
           </Route> */}

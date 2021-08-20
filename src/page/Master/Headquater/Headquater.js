@@ -166,9 +166,7 @@ class Headquater extends Component {
         )}
         {path === "/css/headquater/add" && (
           <div>
-            <AddheadQuater
-            
-            />
+            <AddheadQuater/>
           </div>
         )}
       </>
