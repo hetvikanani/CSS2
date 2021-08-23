@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Login from "./page/Login/index";
+import Login from "./Container/Login/index";
 
 import RestrictedRoute from "./RestrictedRoute";
 import Routers from "./Router";
 // import Kd from "./login/index"
 
 class MainRouter extends Component {
-  constructor(){
+  constructor(){  
     super()
     this.state={
       isLoggedIn:false,

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Divider, Row, Col, Switch } from "antd";
+import { Divider, Row, Col, Switch } from "antd";
 import { Link, withRouter, NavLink } from "react-router-dom";
 import {
   FormInput,
@@ -106,7 +106,7 @@ class AddBranch extends Component {
                       }
                     ></Label>
                     <FormInput
-                      row={3}
+                      row={5}
                       className="textarea"
                       name="address"
                       className={
@@ -129,9 +129,6 @@ class AddBranch extends Component {
                       }
                       value={values.country}
                     ></FormSelect>
-                  </Col>
-
-                  <Col span={12}>
                     <Label
                       title="State*"
                       className={
@@ -183,10 +180,10 @@ class AddBranch extends Component {
                   </Col>
                   <Col span={12}>
                     <Label title="Activate branch" className="label" />
-                    <div>
-                      No
+                    <div >
+                      <span style={{padding:"10px",fontWeight:"600"}}>No</span>
                       <Switch></Switch>
-                      Yes
+                     <span style={{padding:"10px",fontWeight:"600"}}> Yes</span>
                     </div>
                   </Col>
                 </Row>

@@ -14,7 +14,7 @@ const SelectStyle = styled.div`
     }
     .ant-select-selector {
       width: -webkit-fill-available;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #d2d2d2;
       border-radius: 5px;
       height: 2.25em;
       :before {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {size} from "../../../Components/Responsible"
 
 const BranchStyle = styled.div`
  
@@ -24,5 +25,20 @@ const BranchStyle = styled.div`
 font-size:17.5px;
 text-align:center;
 }
+
+.btnRow{
+    padding:15px;
+}
+
+@media ${size["tablet-max"]} {
+    .ant-row{
+        display:block;
+    }
+    .ant-col-12{
+        max-width: 100%;
+    }
+  }
+
+
 `;
 export { BranchStyle };

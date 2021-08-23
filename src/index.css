@@ -13,16 +13,30 @@ code {
 }
 .box {
   width: 100%;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+  /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), */
+    /* 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12);
-  /* margin: 5rem auto; */
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+    0 100px 80px rgba(0, 0, 0, 0.12); */ 
+    /* box-shadow: ; */
+ /* padding: 1rem 2rem; */
+  /* border-radius: 5px; */
+  /* background-color: rgba(255, 255, 255, var(--tw-bg-opacity)); */
+
+
+   /* margin: 5rem auto; */
   /* border: 2px solid rgb(111, 112, 111); */
+  /* padding-top: 1.5rem;
+  padding-bottom: 1.5rem; */
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  margin-top: 1.25rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 3px 20px rgb(0 0 0 / 4%);
+  background-color: rgba(255,255,255,var(--tw-bg-opacity));
+  border-color: transparent;
+  border-radius: .375rem;
+  position: relative;
 }
+
 .ant-form-item-label
   > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
   display: none !important;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import  logo  from "../../src/images/Logo-a.png";
+import logo from "../../src/images/Logo-a.png";
 import {
   Layout,
   Menu,
@@ -31,10 +31,10 @@ class MyLayout extends Component {
           style={{
             minHeight: "100vh",
             padding: "1.25rem 2rem",
-            background: "rgb(28, 63, 170)"
+            background: "rgb(28, 63, 170)",
           }}
         >
-          <Sider  className="site-layout-background" width={200}>
+          <Sider className="site-layout-background" width={200}>
             <div className="myCustomLogo">
               <Link to="/css/dashboard">
                 <img
@@ -67,8 +67,10 @@ class MyLayout extends Component {
                 </Menu.Item>
                 <Menu.Item key="8">
                   <Link to="/css/branch">Branch</Link>
-                  </Menu.Item>
-                <Menu.Item key="9">Allot Machine</Menu.Item>
+                </Menu.Item>
+                <Menu.Item key="9">
+                  <Link to="/css/allotmachine">Allot Machine</Link>
+                </Menu.Item>
                 <Menu.Item key="10">Employee</Menu.Item>
                 <Menu.Item key="11">Technician</Menu.Item>
                 <Menu.Item key="12">Complaint Master</Menu.Item>
@@ -78,7 +80,6 @@ class MyLayout extends Component {
                 icon={<NotificationOutlined />}
                 title="Complaints"
               >
-               
                 <Menu.Item key="10">Assigned</Menu.Item>
                 <Menu.Item key="11">UnAssigned</Menu.Item>
                 <Menu.Item key="12">Raise Complaint</Menu.Item>
@@ -87,9 +88,8 @@ class MyLayout extends Component {
           </Sider>
           <Layout
             className="site-layout"
-            style={{
-              // margin: "1rem",
-              // marginLeft: "0",
+            style={{  
+             
               borderRadius: "5%",
               background: "white",
             }}
