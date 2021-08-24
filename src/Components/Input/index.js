@@ -13,6 +13,7 @@ class FormInput extends Component {
       row,
       password,
       max,
+     
       ...props
     } = this.props;
     let length = max ? max : 45;
@@ -41,6 +42,7 @@ class FormInput extends Component {
             onChange={handleChange}
             className={`form-control ${className}`}
             maxLength={length}
+          
             {...props}
           />
         )}
@@ -54,5 +56,6 @@ FormInput.defaultProps = {
   tabIndex: "1",
   className: "",
   readOnly: false,
+  
 };
 export default FormInput;

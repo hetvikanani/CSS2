@@ -82,6 +82,7 @@ class Branch extends Component {
 
     return (
       <BranchStyle>
+    
         <Header>
           <Breadcrumb>
             <Breadcrumb.Item>
@@ -96,7 +97,7 @@ class Branch extends Component {
         {path === "/css/branch" && (
           <>
             <Row gutter={6} className="btnRow">
-              <Col span={3}>
+              <Col span={3} className="btnCol">
               <Button
                 className="btnAdd"
                 onClick={() => {
@@ -105,8 +106,8 @@ class Branch extends Component {
               >
                 Add Branch
               </Button>
-              </Col>
-            <Col span={3}>
+                </Col>
+            <Col span={3} className='btnPlus'>
             <Dropdown overlay={menu} trigger={["click"]}>
                 <span>
                   <Button className="btnPlus" onClick={() => {}}>
@@ -127,9 +128,11 @@ class Branch extends Component {
         )}
         {path === "/css/branch/add" && (
           <div>
-            <AddBranch />
+            <AddBranch />   
           </div>
         )}
+    
+        
       </BranchStyle>
     );
   }

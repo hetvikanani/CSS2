@@ -17,9 +17,17 @@ const ValidationSchema = Yup.object().shape({
   country: Yup.string().trim().required(" "),
   state: Yup.string().trim().required(" "),
   city: Yup.string().trim().required(" "),
-  pincode: Yup.string().trim().required(" "),
+  pincode: Yup.string().required()
+  .min(6,"Please enter correct pin")
+  .max(6, "Minimum 3 character allowed"),
   username: Yup.string().trim().required(" "),
+  password: Yup.string().trim().required(" "),
 });
+
+const country=["India","China","US","UK"];
+const state=["Newyork","Kabul","Gujarat"];
+const city=["Rajkot","Paris","Geenland"];
+
 
 class AddBranch extends Component {
   constructor() {
@@ -34,6 +42,7 @@ class AddBranch extends Component {
         city: "",
         pincode: "",
         username: "",
+        password:"",
       },
     };
   }
@@ -83,6 +92,8 @@ class AddBranch extends Component {
                         errors.headquarter && touched.headquarter ? "empty" : ""
                       }
                       value={values.headquarter}
+                      data={country}
+                      handleChange={handleChange}
                     ></FormSelect>
                   </Col>
                   <Col span={12}>
@@ -94,6 +105,7 @@ class AddBranch extends Component {
                       name="branch"
                       className={errors.branch && touched.branch ? "empty" : ""}
                       value={values.branch}
+                      handleChange={handleChange}
                     />
                   </Col>
                 </Row>
@@ -113,6 +125,7 @@ class AddBranch extends Component {
                         errors.address && touched.address ? "empty" : ""
                       }
                       value={values.address}
+                      handleChange={handleChange}
                     />
                   </Col>
                   <Col span={12}>
@@ -128,6 +141,7 @@ class AddBranch extends Component {
                         errors.country && touched.country ? "empty" : ""
                       }
                       value={values.country}
+                      data={country}
                     ></FormSelect>
                     <Label
                       title="State*"
@@ -139,6 +153,8 @@ class AddBranch extends Component {
                       name="state"
                       selectClass={errors.state && touched.state ? "empty" : ""}
                       value={values.state}
+                      data={state}
+
                     ></FormSelect>
                   </Col>
                 </Row>
@@ -154,6 +170,8 @@ class AddBranch extends Component {
                       name="city"
                       selectClass={errors.city && touched.city ? "empty" : ""}
                       value={values.city}
+                      data={city}
+
                     ></FormSelect>
                   </Col>
                   <Col span={12}>
@@ -165,11 +183,17 @@ class AddBranch extends Component {
                     />
                     <FormInput
                       name="pincode"
+                      type="number"
+                      value={values.pincode}
                       className={
                         errors.pincode && touched.pincode ? "empty" : ""
                       }
-                      value={values.pincode}
+                      handleChange={handleChange}
+                      
                     ></FormInput>
+                     {errors.pincode && touched.pincode && (
+                        <div className="form-error">{errors.pincode}</div>
+                      )}
                   </Col>
                 </Row>
 
@@ -202,11 +226,23 @@ class AddBranch extends Component {
                         errors.username && touched.username ? "empty" : ""
                       }
                       value={values.username}
+                      handleChange={handleChange}
+
                     />
                   </Col>
                   <Col span={12}>
-                    <Label title="Password*" className="label"></Label>
-                    <FormInput />
+                    <Label title="Password*"  className={
+                        errors.password && touched.password ? "empty" : "label"
+                      } ></Label>
+                    <FormInput
+                     name="password"
+                     className={
+                       errors.password && touched.password ? "empty" : ""
+                     }
+                     value={values.password}
+                     handleChange={handleChange} />
+                      
+
                   </Col>
                 </Row>
 
