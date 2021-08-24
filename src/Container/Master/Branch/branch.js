@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "../../../Layout/Header";
-import { Breadcrumb, Button, Menu, Dropdown, Table, Row,Col} from "antd";
+import { Breadcrumb, Button, Menu, Dropdown, Table, Row, Col } from "antd";
 import { BranchStyle } from "./style";
 import { Link, withRouter } from "react-router-dom";
 import {
@@ -12,7 +12,6 @@ import {
   FileTextOutlined,
 } from "@ant-design/icons";
 import AddBranch from "./AddBranch";
-
 
 class Branch extends Component {
   constructor() {
@@ -54,7 +53,7 @@ class Branch extends Component {
       dataIndex: "status",
       key: "status",
     },
-  ];  
+  ];
 
   render() {
     let path = window.location.pathname;
@@ -82,7 +81,6 @@ class Branch extends Component {
 
     return (
       <BranchStyle>
-    
         <Header>
           <Breadcrumb>
             <Breadcrumb.Item>
@@ -97,7 +95,7 @@ class Branch extends Component {
         {path === "/css/branch" && (
           <>
             <Row gutter={6} className="btnRow">
-              <Col span={3} className="btnCol">
+              {/* <Col span={3} className="btnCol"> */}
               <Button
                 className="btnAdd"
                 onClick={() => {
@@ -106,17 +104,16 @@ class Branch extends Component {
               >
                 Add Branch
               </Button>
-                </Col>
-            <Col span={3} className='btnPlus'>
-            <Dropdown overlay={menu} trigger={["click"]}>
+              {/* </Col> */}
+              {/* <Col span={3} className='btnPlus'> */}
+              <Dropdown overlay={menu} trigger={["click"]}>
                 <span>
                   <Button className="btnPlus" onClick={() => {}}>
                     +
                   </Button>
                 </span>
               </Dropdown>
-            </Col>
-              
+              {/* </Col> */}
             </Row>
             <Table
               bordered={true}
@@ -126,13 +123,6 @@ class Branch extends Component {
             />
           </>
         )}
-        {path === "/css/branch/add" && (
-          <div>
-            <AddBranch />   
-          </div>
-        )}
-    
-        
       </BranchStyle>
     );
   }

@@ -17,17 +17,17 @@ const ValidationSchema = Yup.object().shape({
   country: Yup.string().trim().required(" "),
   state: Yup.string().trim().required(" "),
   city: Yup.string().trim().required(" "),
-  pincode: Yup.string().required()
-  .min(6,"Please enter correct pin")
-  .max(6, "Minimum 3 character allowed"),
+  pincode: Yup.string()
+    .required()
+    .min(6, "Please enter correct pin")
+    .max(6, "Only 6 character allowed"),
   username: Yup.string().trim().required(" "),
   password: Yup.string().trim().required(" "),
 });
 
-const country=["India","China","US","UK"];
-const state=["Newyork","Kabul","Gujarat"];
-const city=["Rajkot","Paris","Geenland"];
-
+const country = ["India", "China", "US", "UK"];
+const state = ["Newyork", "Kabul", "Gujarat"];
+const city = ["Rajkot", "Paris", "Geenland"];
 
 class AddBranch extends Component {
   constructor() {
@@ -42,7 +42,7 @@ class AddBranch extends Component {
         city: "",
         pincode: "",
         username: "",
-        password:"",
+        password: "",
       },
     };
   }
@@ -94,6 +94,9 @@ class AddBranch extends Component {
                       value={values.headquarter}
                       data={country}
                       handleChange={handleChange}
+                      onChange={(value) => {
+                        setFieldValue("headquarter", value);
+                      }}
                     ></FormSelect>
                   </Col>
                   <Col span={12}>
@@ -142,6 +145,9 @@ class AddBranch extends Component {
                       }
                       value={values.country}
                       data={country}
+                      onChange={(value) => {
+                        setFieldValue("country", value);
+                      }}
                     ></FormSelect>
                     <Label
                       title="State*"
@@ -154,7 +160,9 @@ class AddBranch extends Component {
                       selectClass={errors.state && touched.state ? "empty" : ""}
                       value={values.state}
                       data={state}
-
+                      onChange={(value) => {
+                        setFieldValue("state", value);
+                      }}
                     ></FormSelect>
                   </Col>
                 </Row>
@@ -171,7 +179,9 @@ class AddBranch extends Component {
                       selectClass={errors.city && touched.city ? "empty" : ""}
                       value={values.city}
                       data={city}
-
+                      onChange={(value) => {
+                        setFieldValue("city", value);
+                      }}
                     ></FormSelect>
                   </Col>
                   <Col span={12}>
@@ -189,11 +199,10 @@ class AddBranch extends Component {
                         errors.pincode && touched.pincode ? "empty" : ""
                       }
                       handleChange={handleChange}
-                      
                     ></FormInput>
-                     {errors.pincode && touched.pincode && (
-                        <div className="form-error">{errors.pincode}</div>
-                      )}
+                    {errors.pincode && touched.pincode && (
+                      <div className="form-error">{errors.pincode}</div>
+                    )}
                   </Col>
                 </Row>
 
@@ -204,10 +213,15 @@ class AddBranch extends Component {
                   </Col>
                   <Col span={12}>
                     <Label title="Activate branch" className="label" />
-                    <div >
-                      <span style={{padding:"10px",fontWeight:"600"}}>No</span>
+                    <div>
+                      <span style={{ padding: "10px", fontWeight: "600" }}>
+                        No
+                      </span>
                       <Switch></Switch>
-                     <span style={{padding:"10px",fontWeight:"600"}}> Yes</span>
+                      <span style={{ padding: "10px", fontWeight: "600" }}>
+                        {" "}
+                        Yes
+                      </span>
                     </div>
                   </Col>
                 </Row>
@@ -227,22 +241,41 @@ class AddBranch extends Component {
                       }
                       value={values.username}
                       handleChange={handleChange}
-
                     />
                   </Col>
                   <Col span={12}>
-                    <Label title="Password*"  className={
-                        errors.password && touched.password ? "empty" : "label"
-                      } ></Label>
-                    <FormInput
-                     name="password"
-                     className={
-                       errors.password && touched.password ? "empty" : ""
-                     }
-                     value={values.password}
-                     handleChange={handleChange} />
-                      
-
+                    <div
+                      style={{
+                        display: "grid",
+                        alignItems: "center",
+                        gridTemplateColumns: "3fr 1fr",
+                      }}
+                    >
+                      <div>
+                        <Label
+                          title="Password*"
+                          className={
+                            errors.password && touched.password
+                              ? "empty"
+                              : "label"
+                          }
+                        ></Label>
+                        <FormInput
+                          name="password"
+                          password={true}
+                          className={
+                            errors.password && touched.password ? "empty" : ""
+                          }
+                          value={values.password}
+                          handleChange={handleChange}
+                        />
+                      </div>
+                      <FormButton
+                        style={{ alignSelf: "flex-end", marginBottom: "0px" }}
+                      >
+                        Change
+                      </FormButton>
+                    </div>
                   </Col>
                 </Row>
 

@@ -7,7 +7,8 @@ import MachineGroup from "./Container/Master/Machine Group/MachineGroup";
 import AddMachineGroup from "./Container/Master/Machine Group/AddMachineGroup";
 import EditMachineGroup from "./Container/Master/Machine Group/EditMachineGroup";
 import Headquater from "./Container/Master/Headquater/Headquater";
-import Branch from './Container/Master/Branch/branch';
+import Branch from "./Container/Master/Branch/branch";
+import AddBranch from "./Container/Master/Branch/AddBranch";
 import AllotMachine from "./Container/Master/AllotMachine/Allot";
 
 // import AddMachine from "./Container/Master/Machine/AddMachine";
@@ -54,16 +55,16 @@ class Routers extends Component {
             <Headquater />
           </Route>
           <Route path="/css/branch" exact={true}>
-            <Branch/>
+            <Branch />
           </Route>
           <Route path="/css/branch/add" exact={true}>
-            <Branch/>
+            <AddBranch />
           </Route>
           <Route path="/css/allotmachine" exact={true}>
-            <AllotMachine/>
+            <AllotMachine />
           </Route>
           <Route path="/css/allotmachine/add" exact={true}>
-            <AllotMachine/>
+            <AllotMachine />
           </Route>
           {/* <Route path="/css/porter">
             <Porter />

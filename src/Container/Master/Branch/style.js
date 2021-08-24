@@ -7,6 +7,7 @@ const BranchStyle = styled.div`
     color: white;
     font-weight: 600;
     border-radius: 7px;
+    margin-right: 10px;
   }
   .btnPlus {
     border-radius: 10px;
@@ -25,7 +26,7 @@ const BranchStyle = styled.div`
     font-size: 17.5px;
     text-align: center;
   }
-  .ant-table-wrapper{
+  .ant-table-wrapper {
     overflow: auto;
   }
 
@@ -38,22 +39,22 @@ const BranchStyle = styled.div`
     }
   }
 
-  @media ${size["laptop-max"]} {
-    .btnCol {
-      padding-left: 1px;
-    }
-    .btnPlus {
-      padding-left: 20px;
-    }
-  }
+  // @media ${size["laptop-max"]} {
+  //   .btnCol {
+  //     padding-left: 1px;
+  //   }
+  //   .btnPlus {
+  //     padding-left: 20px;
+  //   }
+  // }
 
-  @media ${size["laptop-sm-max"]} {
-    .btnCol {
-      padding-left: 0px;
-    }
-    .btnPlus {
-      padding-left: 35px;
-    }
-  }
+  // @media ${size["laptop-sm-max"]} {
+  //   .btnCol {
+  //     padding-left: 0px;
+  //   }
+  //   .btnPlus {
+  //     padding-left: 35px;
+  //   }
+  // }
 `;
 export { BranchStyle };

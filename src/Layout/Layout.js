@@ -28,7 +28,7 @@ class MyLayout extends Component {
   constructor() {
     super();
     this.state = {
-      width: 0,
+      width: window.innerWidth,
       height: 0,
     };
   }
@@ -54,12 +54,8 @@ class MyLayout extends Component {
             background: "rgb(28, 63, 170)",
           }}
         >
-          {this.state.width > 767  ? (
-            <Sider
-              className="site-layout-background"
-              width={200}
-             
-            >
+          {this.state.width > 767 ? (
+            <Sider className="site-layout-background" width={200}>
               <div className="myCustomLogo">
                 <Link to="/css/dashboard">
                   <img
@@ -111,7 +107,9 @@ class MyLayout extends Component {
                 </SubMenu>
               </Menu>
             </Sider>
-          ) : <Mobile/>}
+          ) : (
+            <Mobile />
+          )}
 
           <Layout
             className="site-layout"

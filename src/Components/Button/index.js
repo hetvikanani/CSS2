@@ -27,7 +27,7 @@ const ButtonConstant = {
 };
 class FormButton extends Component {
   render() {
-    const { children, htmlType, color, onClick, className, disabled } =
+    const { children, htmlType, color, onClick, className, disabled, style } =
       this.props;
     return (
       <Button
@@ -36,6 +36,7 @@ class FormButton extends Component {
         onClick={onClick}
         className={className}
         disabled={disabled ? disabled : false}
+        style={style}
       >
         {children}
       </Button>

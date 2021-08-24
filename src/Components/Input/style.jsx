@@ -9,10 +9,11 @@ const InputStyle = styled.div`
   align-items: stretch;
   width: 100%;
   .ant-input-affix-wrapper {
-    border: 0;
+    // border: 0;
     padding: 0;
     box-shadow: none;
-    border-radius: 0;
+    border-radius: 5px;
+    border: 1px solid #b5b5b5;
   }
   .ant-input-prefix {
     margin-right: 5px;
@@ -28,7 +29,7 @@ const InputStyle = styled.div`
     margin: 0;
     -webkit-appearance: none;
     background: #fff;
-    border: 1;
+    border: 1px solid #b5b5b5;
     height: 34px;
     font-size: 15px;
     font-weight: 300;
